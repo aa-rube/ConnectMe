@@ -25,7 +25,7 @@ body {
 }
 
 .users-list {
-  width: calc(30vw - 2vh);
+  width: calc(27vw - 0vh);
   height: calc(89vh - 1vh);
 
   margin-right: 5px;
@@ -94,7 +94,7 @@ body {
 }
 
 .userButton {
-  width: calc(21vw - 1vh);
+  width: calc(25vw - 7vh);
   height: calc(6vh - 2vh);
 
   color: #c7d0ffef;
@@ -178,4 +178,63 @@ body {
   margin-right: calc(1vw - 1vh);
   margin-top: calc(1vw - 1vh);
   margin-bottom: calc(1vw - 1vh);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.setup-page {
+    text-align: center;
+    margin-top: 50px;
+}
+
+h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.email-input,
+.password-input,
+.username-input {
+    width: 250px;
+    height: 30px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.submit-name,
+.show-password {
+    font-size: 14px;
+    padding: 8px 16px;
+    margin-bottom: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-name:hover,
+.show-password:hover {
+    background-color: #45a049;
+}
+
+.create-account-message {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.create-account-message a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.create-account-message a:hover {
+    text-decoration: underline;
 }
