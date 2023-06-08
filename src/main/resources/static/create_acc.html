@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Group Chat</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<section class="chat-header"></section>
+<section class="setup-page">
+    <h2>Enter Your email:</h2>
+    <input type="text" class="email-input" />
+    <h2>Enter Your Password:</h2>
+    <input type="password" class="password-input" />
+    <h2>Enter Your Username:</h2>
+    <input type="text" class="username-input" />
+    <button class="submit-name">submit</button>
+    <button class="show-password">Show Password</button>
+</section>
+<section class="messages-and-users">
+    <div class="users-list"></div>
+    <div class="messages-list">
+        <i>No one message</i>
+        <div class="message-item">
+            <div class="message-text"></div>
+            <div class="username"></div>
+            <div class="datetime"></div>
+        </div>
+    </div>
+</section>
+<section class="controls">
+    <textarea class="new-message"></textarea>
+    <button class="send-message">send</button>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="/js/chat.js"></script>
+<script src="/js/user.js"></script>
+<script src="/js/create_acc.js"></script>
+</body>
+</html>

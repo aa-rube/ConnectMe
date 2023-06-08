@@ -1,0 +1,69 @@
+@RestController
+public class ChatController {
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private MessageRepository messageRepository;
+    private final StringBuilder sessionId = new StringBuilder();
+
+    @GetMapping("/init")
+    public Map<String, Boolean> init() {
+        sessionId.setLength(0);
+        sessionId.append(RequestContextHolder.currentRequestAttributes().getSessionId());
+        Optional<User> userOpt = userRepository.findBySessionId(sessionId.toString());
+        return Map.of("result", userOpt.isPresent());
+    }
+
+    @PostMapping("/auth")
+    public Map<String, Boolean> auth(@RequestParam String name) {
+        if (name.length() == 0) {
+            return Map.of("result", false);
+        }
+
+        sessionId.setLength(0);
+        sessionId.append(RequestContextHolder.currentRequestAttributes().getSessionId());
+
+        Optional<User> userOpt = userRepository.findBySessionId(sessionId.toString());
+        User user;
+        if (userOpt.isPresent()) {
+            user = userOpt.get();
+            user.setName(name);
+        } else {
+            user = new User(sessionId.toString(), name);
+        }
+
+        userRepository.save(user);
+        return Map.of("result", true);
+    }
+
+    @PostMapping("/message")
+    public Map<String, Boolean> sendMessage(@RequestParam String message) {
+        if (message.length() == 0) {
+            return Map.of("result", false);
+        }
+
+        sessionId.setLength(0);
+        sessionId.append(RequestContextHolder.currentRequestAttributes().getSessionId());
+        User user = userRepository.findBySessionId(sessionId.toString()).get();
+
+        String messageId = user.getId() + "_" + System.currentTimeMillis();
+
+        Message msg = new Message(messageId, user, LocalDateTime.now(), message);
+        messageRepository.save(msg);
+        return Map.of("result", true);
+    }
+
+    @GetMapping("/message")
+    public List<DtoMessage> getMessagesList() {
+        return messageRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparing(Message::getDateTime))
+                .map(MessageMapper::map)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/user")
+    public List<User> getUsersList() {
+        return userRepository.findAll();
+    }
+}
