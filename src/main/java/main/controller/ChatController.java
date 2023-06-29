@@ -31,6 +31,7 @@ public class ChatController {
         }
         User sender = userService.findBySessionId();
         User receiver = userService.findByName(userName);
+
         Message msg = messageService.saveAndReturn(sender, receiver, message);
         chatService.save(sender, receiver, msg);
 
@@ -63,5 +64,11 @@ public class ChatController {
            return notificationService.getMapWithCountNotification(userOpt.get());
         }
         return new HashMap<>();
+    }
+
+    @GetMapping("/status")
+    public Map<String, Integer> getStatuses(){
+
+        return Map.of("", 0);
     }
 }

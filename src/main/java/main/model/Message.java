@@ -40,6 +40,6 @@ public class Message {
     @Column(name = "recipient_name")
     private String receiverName;
 
-    private Status status;
+    private MessageStatus messageStatus;
 
 }

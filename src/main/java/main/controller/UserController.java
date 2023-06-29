@@ -26,7 +26,7 @@ public class UserController {
 
     @PostMapping("/auth")
     public Map<String, Boolean> auth(@RequestParam String encryptedEmail) {
-        if(authService.isScam(userService.sessionId())){
+        if(authService.isScam(userService.sessionId(), encryptedEmail)){
             return Map.of("result", false);
         }
 
@@ -47,11 +47,13 @@ public class UserController {
                 userService.findByEncryptedEmail(encryptedEmail).isPresent()){
             return Map.of("result", false);
         }
-        User user = new User();
-        user.setEncryptedEmail(encryptedEmail);
-        user.setSessionId(userService.sessionId());
-        user.setName(username);
-        userService.save(user);
+        userService.createUser(encryptedEmail, username);
         return Map.of("result", true);
+    }
+
+    @PostMapping("/userStatus")
+    public Map<String, Integer> userStatus() {
+        User owner = userService.findBySessionId();
+        return userService.userStatus(owner);
     }
 }

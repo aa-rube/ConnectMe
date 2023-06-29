@@ -5,7 +5,7 @@ import main.repository.AuthRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -17,19 +17,23 @@ public class AuthService {
         return authRepository.findById(s);
     }
 
-    public boolean isScam(String sessionId) {
+    public boolean isScam(String sessionId, String email) {
         Optional<Auth> optionalAuth = findById(sessionId);
-        Auth auth;
+        Auth auth = new Auth();
 
         if (optionalAuth.isPresent()) {
             auth = optionalAuth.get();
             auth.setCount(auth.getCount() +1);
+            auth.setLocalDateTime(LocalDateTime.now());
+            auth.setEncryptedEmail(email);
         } else {
-            auth = new Auth();
             auth.setId(sessionId);
             auth.setCount(1);
+            auth.setLocalDateTime(LocalDateTime.now());
+            auth.setEncryptedEmail(email);
+
         }
         authRepository.save(auth);
-        return auth.getCount() > 3;
+        return auth.getCount() > 10;
     }
 }

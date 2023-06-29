@@ -3,9 +3,10 @@ package main.service;
 import main.dto.DtoMessage;
 import main.dto.MessageMapper;
 import main.model.Message;
-import main.model.Status;
+import main.model.MessageStatus;
 import main.model.User;
 import main.repository.MessageRepository;
+import main.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +22,15 @@ public class MessageService {
     @Autowired
     MessageRepository messageRepository;
 
-    public Message saveAndReturn(User sender, User receiver, String content) {
-        Message msg = new Message();
+    @Autowired
+    UserRepository userRepository;
 
+    public Message saveAndReturn(User sender, User receiver, String content) {
+        sender.setStatus(1);
+        sender.setLastAction(LocalDateTime.now());
+        userRepository.save(sender);
+
+        Message msg = new Message();
         msg.setSenderId(sender.getId());
         msg.setSenderName(sender.getName());
 
@@ -41,9 +48,13 @@ public class MessageService {
         messages.stream()
                 .filter(message -> Objects.equals(message.getReceiverName(), senderName))
                 .forEach(message -> {
-                    if (message.getStatus() != Status.RECEIVED) {
-                        message.setStatus(Status.RECEIVED);
+                    if (message.getMessageStatus() != MessageStatus.RECEIVED) {
+                        message.setMessageStatus(MessageStatus.RECEIVED);
                         messageRepository.save(message);
+
+                        User u = userRepository.findByName(message.getReceiverName());
+                        u.setStatus(1);
+                        userRepository.save(u);
                     }
                 });
     }
@@ -54,5 +65,4 @@ public class MessageService {
                 .map(MessageMapper::map)
                 .collect(Collectors.toList());
     }
-
 }

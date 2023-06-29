@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,4 +27,9 @@ public class User {
 
     @Column(name = "encrypted_email")
     private String encryptedEmail;
+
+    private int status;
+
+    @Column(name = "last_action")
+    LocalDateTime lastAction;
 }

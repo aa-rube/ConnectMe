@@ -2,7 +2,7 @@ package main.service;
 
 import main.model.Chat;
 import main.model.Message;
-import main.model.Status;
+import main.model.MessageStatus;
 import main.model.User;
 import main.repository.ChatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class ChatService {
             chat = chats.get(0);
         }
 
-        msg.setStatus(Status.DELIVERED);
+        msg.setMessageStatus(MessageStatus.DELIVERED);
         chat.getListMessages().add(msg);
         chatRepository.save(chat);
     }

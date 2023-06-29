@@ -1,7 +1,6 @@
 package main.dto;
 
 import main.model.Message;
-import main.model.Status;
 
 import java.time.format.DateTimeFormatter;
 
@@ -13,6 +12,6 @@ public class MessageMapper {
                 message.getContent(),
                 message.getDateTime().format(formatter),
                 message.getSenderName(),
-                String.valueOf(message.getStatus()));
+                String.valueOf(message.getMessageStatus()));
     }
 }

@@ -47,6 +47,7 @@ $(function() {
         const userValue = response[userName];
         userButton.data('userValue', userValue);
         const userContainer = $('<div></div>').append(userButton);
+
         if (userValue > 0) {
           const dotElement = $('<span class="dot"></span>').text('📌');
           const valueElement = $('<span class="userValue"></span>');
@@ -60,6 +61,7 @@ $(function() {
           }
           userContainer.append(dotElement, valueElement);
         }
+
         $('.users-list').append(userContainer);
         if (userName === selectedUserName) {
           userButton.addClass('active');

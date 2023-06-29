@@ -1,6 +1,6 @@
 package main.model;
 
-public enum Status {
+public enum MessageStatus {
     DELIVERED,
     RECEIVED
 }
