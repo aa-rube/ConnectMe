@@ -25,7 +25,7 @@ public class ChatController {
 
     @PostMapping("/message")
     public Map<String, Boolean> sendMessage(@RequestParam String message,
-                                            @RequestParam String userName) {//receiver
+                                            @RequestParam String userName) {
         if (message.length() == 0 || userName.length() == 0) {
             return Map.of("result", false);
         }
