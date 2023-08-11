@@ -5,7 +5,8 @@ $(function() {
 
   let initApplication = function() {
     $('.setup-page').hide();
-    $('.messages-and-users').css({ display: 'flex' });
+    $('.users-list').css({ display: 'flex' });
+    $('.messages-list').css({ display: 'flex' });
     $('.controls').css({ display: 'flex' });
 
     updateUsers();
@@ -39,39 +40,30 @@ $(function() {
     }
   });
 
-  let updateUsers = function() {
-    $.get('/user', {}, function(response) {
-      $('.users-list').empty();
-      for (const userName in response) {
-        const userButton = $('<button class="userButton"></button>').text(userName);
-        const userValue = response[userName];
-        userButton.data('userValue', userValue);
-        const userContainer = $('<div></div>').append(userButton);
+let updateUsers = function() {
+  $.get('/user', {}, function(response) {
+    $('.users-list').empty();
+    for (const userName in response) {
+      const userButton = $('<button class="userButton"></button>').text(userName);
+      const userValue = response[userName];
+      userButton.data('userValue', userValue);
+      const userContainer = $('<div></div>').append(userButton);
 
-        if (userValue > 0) {
-          const dotElement = $('<span class="dot"></span>').text('📌');
-          const valueElement = $('<span class="userValue"></span>');
-
-          if (userName === selectedUserName && isNewMessage) {
-            const activeUserValue = $('.userButton.active').siblings('.userValue');
-            const activeDotElement = $('.userButton.active').siblings('.dot');
-            if (activeDotElement.is(':visible')) {
-              dotElement.show();
-            }
-          }
-          userContainer.append(dotElement, valueElement);
-        }
-
-        $('.users-list').append(userContainer);
-        if (userName === selectedUserName) {
-          userButton.addClass('active');
-          selectedUserValue = userValue;
-        }
+      if (userValue > 0) {
+        userButton.addClass('high-value-user');
       }
-    }).fail(function(error) {
-      console.log('Error:', error);
-    });
-  };
+
+      $('.users-list').append(userContainer);
+      if (userName === selectedUserName) {
+        userButton.addClass('active');
+        selectedUserValue = userValue;
+      }
+    }
+  }).fail(function(error) {
+    console.log('Error:', error);
+  });
+};
+
 
   let handleUserClick = function(userName, userValue) {
     $('.userButton').removeClass('active');

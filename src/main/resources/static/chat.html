@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat ConnectMe</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<section class="chat-container">
+    <div class="users-list">
+        <div class="users"></div>
+    </div>
+
+    <div class="messages-container">
+        <div class="messages-list">
+            <i>No one message</i>
+
+            <div class="message-item">
+                <div class="message-text"></div>
+                <div class="username"></div>
+                <div class="datetime"></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <textarea class="new-message"></textarea>
+            <button class="send-message">send</button>
+        </div>
+    </div>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="/js/chat.js"></script>
+<script src="/js/user.js"></script>
+<script src="/js/create_acc.js"></script>
+</body>
+</html>

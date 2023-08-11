@@ -36,7 +36,8 @@ $(document).ready(function() {
         var encryptedEmail = encryptNameWithPassword(email, password);
         $.post('/new_account', { encryptedEmail: encryptedEmail, username: username }, function(response) {
             if (response.result) {
-                initApplication();
+            window.location.href = "/chat.html";
+
             } else {
                 $('.create-account-message')
                     .html('Create failed. Your user email and password are exist.')

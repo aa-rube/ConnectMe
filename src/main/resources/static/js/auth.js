@@ -32,13 +32,12 @@ $(document).ready(function() {
 
     let authUser = function(name, password) {
         var encryptedEmail = encryptNameWithPassword(name, password);
+
         $.post('/auth', { encryptedEmail: encryptedEmail }, function(response) {
             if (response.result) {
-                initApplication();
+                  window.location.href = "/chat.html";
             } else {
-                $('.create-account-message')
-                    .html('Authentication failed. Please try again or <a href="/create_acc.html">create your new account</a>.')
-                    .show();
+                $('.create-account-message').show();
             }
         });
     };
