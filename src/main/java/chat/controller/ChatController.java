@@ -1,12 +1,12 @@
-package main.controller;
+package chat.controller;
 
-import main.dto.DtoMessage;
-import main.model.Message;
-import main.model.User;
-import main.service.NotificationService;
-import main.service.ChatService;
-import main.service.MessageService;
-import main.service.UserService;
+import chat.dto.DtoMessage;
+import chat.model.Message;
+import chat.model.User;
+import chat.service.NotificationService;
+import chat.service.ChatService;
+import chat.service.MessageService;
+import chat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +26,7 @@ public class ChatController {
     @PostMapping("/message")
     public Map<String, Boolean> sendMessage(@RequestParam String message,
                                             @RequestParam String userName) {
-        if (message.length() == 0 || userName.length() == 0) {
+        if (message.isEmpty() || userName.isEmpty()) {
             return Map.of("result", false);
         }
         User sender = userService.findBySessionId();

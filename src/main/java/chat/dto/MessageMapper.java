@@ -1,6 +1,6 @@
-package main.dto;
+package chat.dto;
 
-import main.model.Message;
+import chat.model.Message;
 
 import java.time.format.DateTimeFormatter;
 

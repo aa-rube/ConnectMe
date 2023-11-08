@@ -1,13 +1,12 @@
-package main.service;
+package chat.service;
 
-import main.model.Notification;
-import main.model.User;
-import main.repository.NotificationRepository;
+import chat.model.Notification;
+import chat.model.User;
+import chat.repository.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class NotificationService {

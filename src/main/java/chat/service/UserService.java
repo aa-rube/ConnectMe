@@ -1,7 +1,7 @@
-package main.service;
+package chat.service;
 
-import main.model.User;
-import main.repository.UserRepository;
+import chat.model.User;
+import chat.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;

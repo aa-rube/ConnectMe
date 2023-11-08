@@ -1,6 +1,6 @@
-package main.repository;
+package chat.repository;
 
-import main.model.Auth;
+import chat.model.Auth;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

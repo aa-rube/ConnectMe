@@ -1,6 +1,6 @@
-package main.repository;
+package chat.repository;
 
-import main.model.Notification;
+import chat.model.Notification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

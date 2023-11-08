@@ -1,4 +1,4 @@
-package main.model;
+package chat.model;
 
 public enum MessageStatus {
     DELIVERED,
