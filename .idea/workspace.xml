@@ -5,35 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="334dd07d-ec6f-48b4-8a07-0b0813715f3c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/chat/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ConnectMe_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/controller/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/controller/ChatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/dto/DtoMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/dto/DtoMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/dto/MessageMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/dto/MessageMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/model/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/model/Auth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/model/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/model/Chat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/model/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/model/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/model/MessageStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/model/MessageStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/model/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/model/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/model/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/repository/AuthRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/repository/AuthRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/repository/ChatRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/repository/ChatRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/repository/MessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/repository/MessageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/repository/NotificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/repository/NotificationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/service/ChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/service/ChatService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/service/MessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/service/NotificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chat/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +26,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
@@ -94,7 +70,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1699400870824</updated>
-      <workItem from="1699400876020" duration="1290000" />
+      <workItem from="1699400876020" duration="1960000" />
     </task>
     <servers />
   </component>
