@@ -1,7 +1,7 @@
-package chat.service;
+package app.service;
 
-import chat.model.Auth;
-import chat.repository.AuthRepository;
+import app.model.Auth;
+import app.repository.AuthRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

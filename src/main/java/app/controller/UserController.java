@@ -1,8 +1,8 @@
-package chat.controller;
+package app.controller;
 
-import chat.model.User;
-import chat.service.AuthService;
-import chat.service.UserService;
+import app.model.User;
+import app.service.AuthService;
+import app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

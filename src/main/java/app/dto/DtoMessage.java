@@ -1,4 +1,4 @@
-package chat.dto;
+package app.dto;
 public class DtoMessage {
     private String text;
     private String dateTime;

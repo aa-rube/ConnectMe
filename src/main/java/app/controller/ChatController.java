@@ -1,12 +1,12 @@
-package chat.controller;
+package app.controller;
 
-import chat.dto.DtoMessage;
-import chat.model.Message;
-import chat.model.User;
-import chat.service.NotificationService;
-import chat.service.ChatService;
-import chat.service.MessageService;
-import chat.service.UserService;
+import app.dto.DtoMessage;
+import app.model.Message;
+import app.model.User;
+import app.service.NotificationService;
+import app.service.ChatService;
+import app.service.MessageService;
+import app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

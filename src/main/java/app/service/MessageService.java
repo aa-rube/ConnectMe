@@ -1,12 +1,12 @@
-package chat.service;
+package app.service;
 
-import chat.dto.DtoMessage;
-import chat.dto.MessageMapper;
-import chat.model.Message;
-import chat.model.MessageStatus;
-import chat.model.User;
-import chat.repository.MessageRepository;
-import chat.repository.UserRepository;
+import app.dto.DtoMessage;
+import app.dto.MessageMapper;
+import app.model.Message;
+import app.model.MessageStatus;
+import app.model.User;
+import app.repository.MessageRepository;
+import app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

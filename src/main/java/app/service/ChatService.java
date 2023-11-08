@@ -1,10 +1,10 @@
-package chat.service;
+package app.service;
 
-import chat.model.Chat;
-import chat.model.Message;
-import chat.model.MessageStatus;
-import chat.model.User;
-import chat.repository.ChatRepository;
+import app.model.Chat;
+import app.model.Message;
+import app.model.MessageStatus;
+import app.model.User;
+import app.repository.ChatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

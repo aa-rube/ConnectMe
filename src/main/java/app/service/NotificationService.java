@@ -1,8 +1,8 @@
-package chat.service;
+package app.service;
 
-import chat.model.Notification;
-import chat.model.User;
-import chat.repository.NotificationRepository;
+import app.model.Notification;
+import app.model.User;
+import app.repository.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
