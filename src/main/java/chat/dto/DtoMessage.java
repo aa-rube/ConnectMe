@@ -11,5 +11,5 @@ public class DtoMessage {
         this.userName = userName;
         this.status = status;
     }
-    
+
 }
