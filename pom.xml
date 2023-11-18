@@ -2,8 +2,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>connectme</groupId>
-    <artifactId>connectme</artifactId>
+    <groupId>connectMe</groupId>
+    <artifactId>connectMe</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <name>Maven</name>
@@ -11,12 +11,6 @@
     <inceptionYear>2001</inceptionYear>
 
     <dependencies>
-
-        <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
-            <version>3.1.0</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -84,15 +78,7 @@
             <version>20210307</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.vdurmont</groupId>
-            <artifactId>emoji-java</artifactId>
-            <version>5.1.1</version>
-        </dependency>
-
     </dependencies>
-
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>19</maven.compiler.source>
