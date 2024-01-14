@@ -41,7 +41,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public Optional<User> findOPtBySessionId() {
+    public Optional<User> findOptBySessionId() {
         return userRepository.findBySessionId(sessionId());
     }
 

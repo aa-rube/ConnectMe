@@ -21,11 +21,12 @@ public class UserController {
 
     @GetMapping("/init")
     public Map<String, Boolean> init() {
-        return Map.of("result", userService.findOPtBySessionId().isPresent());
+        return Map.of("result", userService.findOptBySessionId().isPresent());
     }
 
     @PostMapping("/auth")
     public Map<String, Boolean> auth(@RequestParam String encryptedEmail) {
+
         if(authService.isScam(userService.sessionId(), encryptedEmail)){
             return Map.of("result", false);
         }

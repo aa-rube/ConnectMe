@@ -41,7 +41,7 @@ public class ChatController {
 
     @GetMapping("/message")
     public List<DtoMessage> getChatMessagesList(@RequestParam String userName) {
-        Optional<User> senderOpt = userService.findOPtBySessionId();
+        Optional<User> senderOpt = userService.findOptBySessionId();
 
         if (senderOpt.isPresent()) {
             User sender = senderOpt.get();
@@ -58,7 +58,7 @@ public class ChatController {
 
     @GetMapping("/user")
     public Map<String, Integer> getUsersList() {
-        Optional<User> userOpt = userService.findOPtBySessionId();
+        Optional<User> userOpt = userService.findOptBySessionId();
 
         if (userOpt.isPresent() && userService.findAll().size() > 1) {
            return notificationService.getMapWithCountNotification(userOpt.get());
@@ -68,7 +68,6 @@ public class ChatController {
 
     @GetMapping("/status")
     public Map<String, Integer> getStatuses(){
-
         return Map.of("", 0);
     }
 }
