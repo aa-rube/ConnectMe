@@ -30,7 +30,7 @@ public class UserController {
 
     @PostMapping("/auth")
     public Map<String, String> auth(@RequestParam String email) {
-
+        System.out.println("auth auth auth");
         if (authService.isScam(userService.sessionId(), email)) {
             return Map.of("result", "false");
         }
