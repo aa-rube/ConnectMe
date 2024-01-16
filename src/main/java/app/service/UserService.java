@@ -18,7 +18,7 @@ public class UserService {
     public void createUser(String encryptedEmail, String username) {
         User user = new User();
         user.setEncryptedEmail(encryptedEmail);
-        user.setSessionId(sessionId());
+        user.setPrivateAuthKey(sessionId());
         user.setName(username);
         user.setStatus(1);
         user.setLastAction(LocalDateTime.now());
@@ -31,7 +31,7 @@ public class UserService {
 
     public boolean save(String name) {
         User user = new User();
-        user.setSessionId(sessionId());
+        user.setPrivateAuthKey(sessionId());
         user.setName(name);
         userRepository.save(user);
         return true;
@@ -43,6 +43,10 @@ public class UserService {
 
     public Optional<User> findOptBySessionId() {
         return userRepository.findBySessionId(sessionId());
+    }
+
+    public Optional<User> findOptByAuthSecure(String authSecure) {
+        return userRepository.findByAuthSecure(authSecure);
     }
 
     public Optional<User> findByEncryptedEmail(String encryptedEmail){

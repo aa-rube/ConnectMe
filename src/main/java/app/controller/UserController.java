@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.model.GeneratePassword;
 import app.model.User;
 import app.service.AuthService;
 import app.service.UserService;
@@ -28,15 +29,18 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/auth")
-    public Map<String, String> auth(@RequestParam String encryptedEmail) {
+    public Map<String, String> auth(@RequestParam String email) {
 
-        if (authService.isScam(userService.sessionId(), encryptedEmail)) {
+        if (authService.isScam(userService.sessionId(), email)) {
             return Map.of("result", "false");
         }
-        if (userService.findByEncryptedEmail(encryptedEmail).isPresent()) {
-            User user = userService.findByEncryptedEmail(encryptedEmail).get();
+
+        if (userService.findByEncryptedEmail(email).isPresent()) {
+            User user = userService.findByEncryptedEmail(email).get();
+
             String[] keys = generate().split("\n");
-            user.setSessionId(keys[1]);
+            user.setPrivateAuthKey(keys[1]);
+            user.setAuthSecure(email + ":" + EmailSender.sendAuthCode(email, GeneratePassword.generatePassword()));
             userService.save(user);
             return Map.of("result", keys[0]);
         }
@@ -45,8 +49,8 @@ public class UserController {
     }
 
     @GetMapping("/init")
-    public Map<String, Boolean> init(String pubKey) {
-        return Map.of("result", userService.findOptBySessionId().isPresent());
+    public Map<String, Boolean> init(String authSecure) {
+        return Map.of("result", userService.findOptByAuthSecure(authSecure).isPresent());
     }
 
 

@@ -20,7 +20,22 @@ public class User {
     private int status;
 
     @Column(name = "last_action")
-    LocalDateTime lastAction;
+    private LocalDateTime lastAction;
+
+    @Column(name = "auth_secure")
+    private String authSecure;
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    public String getAuthSecure() {
+        return authSecure;
+    }
+
+    public void setAuthSecure(String authSecure) {
+        this.authSecure = authSecure;
+    }
 
     public Integer getId() {
         return id;
@@ -50,7 +65,7 @@ public class User {
         this.id = id;
     }
 
-    public void setSessionId(String sessionId) {
+    public void setPrivateAuthKey(String sessionId) {
         this.sessionId = sessionId;
     }
 
