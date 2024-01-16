@@ -37,10 +37,11 @@ public class UserController {
 
         if (userService.findByEncryptedEmail(email).isPresent()) {
             User user = userService.findByEncryptedEmail(email).get();
-
+            System.out.println(user.getEncryptedEmail());
             String[] keys = generate().split("\n");
             user.setPrivateAuthKey(keys[1]);
-            user.setAuthSecure(email + ":" + EmailSender.sendAuthCode(email, GeneratePassword.generatePassword()));
+            user.setAuthSecure(user.getEncryptedEmail()
+                    + ":" + EmailSender.sendAuthCode(user.getEncryptedEmail(), GeneratePassword.generatePassword()));
             userService.save(user);
             return Map.of("result", keys[0]);
         }
