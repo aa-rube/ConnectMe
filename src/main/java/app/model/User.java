@@ -9,7 +9,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "session_id")
+    @Column(name = "session_id", columnDefinition = "TEXT")
     private String sessionId;
 
     private String name;
