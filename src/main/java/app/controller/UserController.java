@@ -29,29 +29,33 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/auth")
-    public Map<String, String> auth(@RequestParam String email) {
-        System.out.println("auth auth auth");
-        if (authService.isScam(userService.sessionId(), email)) {
-            return Map.of("result", "false");
-        }
+    public Map<String, Boolean> auth(@RequestParam String email) {
+
+//        if (authService.isScam(userService.sessionId(), email)) {
+//            return Map.of("result", "false");
+//        }
 
         if (userService.findByEncryptedEmail(email).isPresent()) {
             User user = userService.findByEncryptedEmail(email).get();
-            System.out.println(user.getEncryptedEmail());
-            String[] keys = generate().split("\n");
-            user.setPrivateAuthKey(keys[1]);
-            user.setAuthSecure(user.getEncryptedEmail()
-                    + ":" + EmailSender.sendAuthCode(user.getEncryptedEmail(), GeneratePassword.generatePassword()));
+            user.setAuthSecure(user.getEncryptedEmail() + ":" + EmailSender.sendAuthCode(user.getEncryptedEmail(), GeneratePassword.generatePassword()));
             userService.save(user);
-            return Map.of("result", keys[0]);
+            return Map.of("result", true);
         }
 
-        return Map.of("result", "false");
+        return Map.of("result", false);
     }
 
     @GetMapping("/init")
-    public Map<String, Boolean> init(String authSecure) {
-        return Map.of("result", userService.findOptByAuthSecure(authSecure).isPresent());
+    public Map<String, String> init(String authSecure) {
+
+        if (userService.findOptByAuthSecure(authSecure).isPresent()) {
+            String key = generate();
+            User user = userService.findOptByAuthSecure(authSecure).get();
+            user.setPrivateAuthKey(key.split("\n")[0]);
+            return Map.of("result", key.split("\n")[1]);
+        }
+
+        return Map.of("result","false");
     }
 
 
