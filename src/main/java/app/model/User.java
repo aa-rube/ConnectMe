@@ -33,8 +33,8 @@ public class User {
         return authSecure;
     }
 
-    public void setAuthSecure(String authSecure) {
-        this.authSecure = authSecure;
+    public void setAuthSecure(String email, String secret) {
+        this.authSecure = email + ":" + secret;
     }
 
     public Integer getId() {

@@ -49,7 +49,7 @@ public class UserService {
         return userRepository.findByAuthSecure(authSecure);
     }
 
-    public Optional<User> findByEncryptedEmail(String encryptedEmail){
+    public Optional<User> findByEmail(String encryptedEmail){
         return userRepository.findByEncryptedEmail(encryptedEmail);
     }
 

@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.*;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-
 import java.util.Base64;
-
 
 @RestController
 public class UserController {
@@ -28,42 +27,43 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/auth")
-    public Map<String, Boolean> auth(@RequestParam String email) {
+    @GetMapping("/init")
+    public Map<String, Boolean> init(String authSecure) {
+        System.out.println("init");
 
-//        if (authService.isScam(userService.sessionId(), email)) {
-//            return Map.of("result", "false");
-//        }
-
-        if (userService.findByEncryptedEmail(email).isPresent()) {
-            User user = userService.findByEncryptedEmail(email).get();
-            user.setAuthSecure(user.getEncryptedEmail() + ":" + EmailSender.sendAuthCode(user.getEncryptedEmail(), GeneratePassword.generatePassword()));
+        if (userService.findOptByAuthSecure(authSecure).isPresent()) {
+            User user = userService.findOptByAuthSecure(authSecure).get();
+            user.setLastAction(LocalDateTime.now());
+            user.setStatus(1);
             userService.save(user);
             return Map.of("result", true);
         }
-
-        return Map.of("result", false);
+        return Map.of("result",false);
     }
 
-    @GetMapping("/init")
-    public Map<String, String> init(String authSecure) {
+    @PostMapping("/auth")
+    public Map<String, Boolean> auth(@RequestParam String email) {
+        System.out.println("auth");
 
-        if (userService.findOptByAuthSecure(authSecure).isPresent()) {
-            String key = generate();
-            User user = userService.findOptByAuthSecure(authSecure).get();
-            user.setPrivateAuthKey(key.split("\n")[0]);
-            return Map.of("result", key.split("\n")[1]);
+        if (userService.findByEmail(email).isPresent()) {
+            User user = userService.findByEmail(email).get();
+            user.setAuthSecure(user.getEncryptedEmail(),
+                    EmailSender.sendAuthCode(user.getEncryptedEmail(), GeneratePassword.generatePassword()));
+            userService.save(user);
+            return Map.of(email, true);
         }
-
-        return Map.of("result","false");
+        return Map.of(email, false);
     }
 
 
     @PostMapping("/new_account")
     public Map<String, Boolean> createNewAccount(@RequestParam String encryptedEmail,
                                                  @RequestParam String username) {
+        System.out.println("new_acc");
+
         if (userService.findOptionalByName(username).isPresent() ||
-                userService.findByEncryptedEmail(encryptedEmail).isPresent()) {
+                userService.findByEmail(encryptedEmail).isPresent()) {
+
             return Map.of("result", false);
         }
         userService.createUser(encryptedEmail, username);
@@ -78,7 +78,7 @@ public class UserController {
 
 
 
-    private String generate() {
+    private String generatePubPriv() {
         Security.addProvider(new BouncyCastleProvider());
 
         try {
@@ -87,8 +87,8 @@ public class UserController {
             KeyPair keyPair = keyPairGenerator.generateKeyPair();
 
             String publicKeyString = Base64.getEncoder().encodeToString(keyPair.getPublic().getEncoded());
-
             String privateKeyString = Base64.getEncoder().encodeToString(keyPair.getPrivate().getEncoded());
+
             return publicKeyString + "\n" + privateKeyString;
         } catch (Exception e) {
             e.printStackTrace();
