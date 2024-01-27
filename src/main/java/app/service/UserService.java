@@ -29,20 +29,15 @@ public class UserService {
         return RequestContextHolder.currentRequestAttributes().getSessionId();
     }
 
-    public boolean save(String name) {
-        User user = new User();
-        user.setPrivateAuthKey(sessionId());
-        user.setName(name);
-        userRepository.save(user);
-        return true;
-    }
+
 
     public void save(User user){
+        user.setSessionId(sessionId());
         userRepository.save(user);
     }
 
-    public Optional<User> findOptBySessionId() {
-        return userRepository.findBySessionId(sessionId());
+    public Optional<User> findOptBySessionId(String sessionId) {
+        return userRepository.findBySessionId(sessionId);
     }
 
     public Optional<User> findOptByAuthSecure(String authSecure) {

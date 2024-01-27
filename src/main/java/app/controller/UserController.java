@@ -18,6 +18,8 @@ import java.util.Map;
 
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.springframework.web.context.request.RequestContextHolder;
+
 import java.util.Base64;
 
 @RestController
@@ -28,27 +30,32 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/init")
-    public Map<String, Boolean> init(String authSecure) {
+    public Map<String, String> init(String authSecure) {
         System.out.println("init");
+        System.out.println(RequestContextHolder.currentRequestAttributes().getSessionId());
+        System.out.println("________________________________________________________");
+
 
         if (userService.findOptByAuthSecure(authSecure).isPresent()) {
             User user = userService.findOptByAuthSecure(authSecure).get();
             user.setLastAction(LocalDateTime.now());
             user.setStatus(1);
             userService.save(user);
-            return Map.of("result", true);
+            return Map.of("result", RequestContextHolder.currentRequestAttributes().getSessionId());
         }
-        return Map.of("result",false);
+        return Map.of("result","refuse");
     }
 
     @PostMapping("/auth")
     public Map<String, Boolean> auth(@RequestParam String email) {
         System.out.println("auth");
+        System.out.println(RequestContextHolder.currentRequestAttributes().getSessionId());
+        System.out.println("________________________________________________________");
+
 
         if (userService.findByEmail(email).isPresent()) {
             User user = userService.findByEmail(email).get();
-            user.setAuthSecure(user.getEncryptedEmail(),
-                    EmailSender.sendAuthCode(user.getEncryptedEmail(), GeneratePassword.generatePassword()));
+            user.setAuthSecure(user.getEncryptedEmail(), EmailSender.sendAuthCode(user.getEncryptedEmail(), GeneratePassword.generatePassword()));
             userService.save(user);
             return Map.of(email, true);
         }
@@ -60,20 +67,23 @@ public class UserController {
     public Map<String, Boolean> createNewAccount(@RequestParam String encryptedEmail,
                                                  @RequestParam String username) {
         System.out.println("new_acc");
+        System.out.println(RequestContextHolder.currentRequestAttributes().getSessionId());
+        System.out.println("________________________________________________________");
 
-        if (userService.findOptionalByName(username).isPresent() ||
-                userService.findByEmail(encryptedEmail).isPresent()) {
 
+        if (userService.findOptionalByName(username).isPresent() || userService.findByEmail(encryptedEmail).isPresent()) {
             return Map.of("result", false);
         }
+
         userService.createUser(encryptedEmail, username);
         return Map.of("result", true);
     }
 
     @PostMapping("/userStatus")
-    public Map<String, Integer> userStatus() {
+    public Map<String, String> userStatus() {
         User owner = userService.findBySessionId();
-        return userService.userStatus(owner);
+        //return userService.userStatus(owner);
+        return Map.of("status", owner.getSessionId());
     }
 
 
